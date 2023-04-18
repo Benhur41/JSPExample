@@ -2,14 +2,8 @@
 <%@page import="com.yedam.employee.EmpDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>getMember</title>
-</head>
-<body>
-		
+<jsp:include page="menu.jsp"></jsp:include>
+<jsp:include page="nav.jsp"></jsp:include>
 	<%
 		
 		EmpDTO emp =(EmpDTO)request.getAttribute("empInfo");
@@ -34,5 +28,4 @@
 	<a href = "modifyMember.do?emp_id=<%=emp.getEmployeeId()%>">수정</a>
 	<%}else{ %>
 	<%response.sendRedirect("getMember.jsp");} %>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>
