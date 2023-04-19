@@ -10,7 +10,7 @@ public class MainControl implements Control {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("myName", "rlaxodus");
+		req.setAttribute("myName", "김태연");
 		return "WEB-INF/views/main.jsp"; // forward 기능을  forontController 에 놔둠
 	}
 

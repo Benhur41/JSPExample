@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.notice.control.InsertNoticeControl;
 import com.yedam.notice.control.NoticeListControl;
 
 public class FrontController extends HttpServlet{
@@ -28,6 +29,10 @@ public class FrontController extends HttpServlet{
 		map.put("/main.do", new MainControl());
 		//공지사항
 		map.put("/noticeList.do", new NoticeListControl());
+		//글 작성
+		map.put("/insertNotice.do", new InsertNoticeControl());
+		//글 삭제
+		map.put("/deleteNotice", new DeleteNoticeControl());
 	}
 	
 	@Override

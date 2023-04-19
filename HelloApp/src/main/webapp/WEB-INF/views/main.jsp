@@ -7,14 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% String name = (String)request.getAttribute("myName"); %>
 	<p>Main Page</p>
-	<p>Expression Language <%=name %> </p>
-	${3>2}
-	${"Hello"}
-	${1+1}
-	${myName !=null}
-	${myName !=null ? "<p>있음</p>" : "<p>없음</p>"}
+	<p>Expression Language ${myName } </p>
+	<a href="noticeList.jsp">게시판 이동</a>
 	
 </body>
 </html>

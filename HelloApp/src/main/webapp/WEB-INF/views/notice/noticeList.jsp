@@ -10,16 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../main.jsp"></jsp:include>
-	<my:if test="${noticeList == null }">
-		<p>${noticeList }</p>
-	</my:if>
 	
-	<my:forEach begin="1" end="6" step="1" var="i">
-		<p>${i}</p>
-	</my:forEach>
 	<my:forEach var="notice" items="${noticeList }">
 		<p>${ notice }</p>
 	</my:forEach>
+	<input type="button" value="글쓰기" onClick="location.href='insertNotice.do'"><input type="button" value="글삭제" onClick="location.href='deleteNotice.do'">
 </body>
 </html>
