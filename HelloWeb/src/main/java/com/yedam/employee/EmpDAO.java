@@ -186,4 +186,33 @@ public class EmpDAO extends DAO {
 			}
 			return result;
 		}
+		
+		//로그인 처리(사원번호 아이디 / 이메일 비밀번호)
+		public EmpDTO loginCheck(int eid , String email) {
+			EmpDTO emp = null;
+			try {
+				conn();
+				String sql = "SELECT * FROM employees WHERE employee_id =? AND email = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, eid);
+				pstmt.setString(2, email);
+				
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					emp = new EmpDTO();
+					emp.setEmployeeId(rs.getInt("employee_id")); 
+					emp.setLastName(rs.getString("last_name"));
+					emp.setFirstName(rs.getString("first_name"));
+					emp.setSalary(rs.getDouble("salary"));
+					emp.setHireDate(rs.getString("hire_date"));
+					emp.setEmail(rs.getString("email"));
+					emp.setJobId(rs.getString("job_id"));
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				disconn();
+			}
+			return emp;
+		}
 }

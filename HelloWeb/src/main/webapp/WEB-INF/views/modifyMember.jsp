@@ -2,24 +2,14 @@
 <%@page import="com.yedam.employee.EmpDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>modifyMember.jsp</title>
-<style>
-	input[type="button"]{
-		background-color : yellow;
-	}
-</style>
-</head>
-<body>
+<jsp:include page="menu.jsp"></jsp:include>
+<jsp:include page="nav.jsp"></jsp:include>
 	<%
 		EmpDTO emp = (EmpDTO)request.getAttribute("empInfo");
 		
 	%>
 	<form action="modifyMember.do" method="POST">
-		<table border ="1">
+		<table class="table">
 			<tr><th>수정될 사원번호</th><td><input type="text" name="eid" value="<%=emp.getEmployeeId() %>" readonly></td></tr>
 			<tr><th>수정할 사원번호</th><td><input type="text" name="emp_id" value="<%=emp.getEmployeeId() %>"></td></tr>
 			<tr><th>FirstName</th><td><input type ="text" name ="first_name" value="<%=emp.getFirstName() %>"></td></tr>
@@ -39,5 +29,4 @@
 	btn.addEventListener("click",deleteEmp)
 	
 	</script>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>
