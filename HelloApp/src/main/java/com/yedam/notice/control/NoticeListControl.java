@@ -18,8 +18,9 @@ public class NoticeListControl implements Control {
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		NoticeService service = new NoticeServiceImpl();
 		List<NoticeVO> list = service.noticeList();
-		req.setAttribute("noticeList", list);
-		return "WEB-INF/views/notice/noticeList.jsp";
+		req.setAttribute("List", list);
+//		return "WEB-INF/views/notice/noticeList.jsp";
+		return "notice/noticeList.tiles";
 	}
 
 }

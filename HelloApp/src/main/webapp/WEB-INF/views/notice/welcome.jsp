@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>Main Page</p>
-	<p>Expression Language ${myName } </p>
-	<a href="noticeList.jsp">게시판 이동</a>
-	
+	<h1>공지사항 게시판입니다.</h1>
 </body>
 </html>

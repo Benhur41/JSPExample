@@ -1,4 +1,4 @@
-package com.yedam.common;
+package com.yedam.notice.control;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.yedam.common.Control;
 import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.service.NoticeServiceImpl;
 
@@ -21,7 +22,7 @@ public class DeleteNoticeControl implements Control {
 		if(result) {
 			return "noticeList.do";
 		}else {
-			return // 수정 삭제 기능 붙이기 ~
+			return "noticeList.do";
 		}
 	}
 

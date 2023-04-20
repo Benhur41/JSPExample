@@ -34,7 +34,9 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public NoticeVO getNotice(int noticeId) {
+		mapper.updateCount(noticeId);
 		return mapper.searchNotice(noticeId);
 	}
+	
 	
 }

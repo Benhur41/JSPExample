@@ -21,8 +21,8 @@
   select * from tbl_notice order by 1 desc
   </select>
   <insert id="insertNotice" parameterType="notice" >
-  	insert into tbl_notice (notice_id , notice_writer , notice_title , notice_subject)
-	values (notice_seq.NEXTVAL , #{noticeWriter} , #{noticeTitle} , #{noticeSubject} )
+  	insert into tbl_notice (notice_id , notice_writer , notice_title , notice_subject,attach_file)
+	values (notice_seq.NEXTVAL , #{noticeWriter} , #{noticeTitle} , #{noticeSubject} ,#{attachFile})
   </insert>
   <update id="updateNotice" parameterType="notice">
   	update tbl_notice set notice_title =#{noticeTitle} , notice_subject=#{noticeSubject} where notice_id = #{noticeId}
@@ -33,4 +33,7 @@
   <select id="searchNotice" parameterType="int" resultType="notice">
   	select * from tbl_notice where notice_id=#{noticeId}
   </select>
+  <update id="updateCount" parameterType="int">
+  	update tbl_notice set hit_count = hit_count+1 where notice_id = #{noticeId}
+  </update>
 </mapper>

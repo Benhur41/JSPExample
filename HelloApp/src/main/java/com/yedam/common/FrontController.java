@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.notice.control.DeleteNoticeControl;
 import com.yedam.notice.control.InsertNoticeControl;
+import com.yedam.notice.control.MainControl;
 import com.yedam.notice.control.NoticeListControl;
+import com.yedam.notice.control.SearchNoticeControl;
+import com.yedam.notice.control.UpdateNoticeControl;
 
 public class FrontController extends HttpServlet{
 	
@@ -31,8 +35,13 @@ public class FrontController extends HttpServlet{
 		map.put("/noticeList.do", new NoticeListControl());
 		//글 작성
 		map.put("/insertNotice.do", new InsertNoticeControl());
+		//글 조회
+		map.put("/searchNotice.do", new SearchNoticeControl());
+		//글 수정
+		map.put("/updateNotice.do", new UpdateNoticeControl());
 		//글 삭제
-		map.put("/deleteNotice", new DeleteNoticeControl());
+		map.put("/deleteNotice.do", new DeleteNoticeControl());
+		
 	}
 	
 	@Override
@@ -47,6 +56,10 @@ public class FrontController extends HttpServlet{
 		Control control = map.get(path);
 		String viewPage = control.execute(req, resp);
 		System.out.println(viewPage);
+		
+//		if(viewPage.endsWith(".tiles")) {
+//			
+//		}
 		
 		//페이지 재지정
 		RequestDispatcher rd = req.getRequestDispatcher(viewPage);
