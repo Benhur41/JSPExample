@@ -43,8 +43,17 @@
 			</c:if>
 			</td>
 		</tr>
-	</table>
-	<input type="button" value="수정" onClick="location.href='updateNotice.do?noticeId=${notice.noticeId}'"><input type="button" value="목록" onClick="location.href='noticeList.do'">
+	</table> 
+	<c:choose>
+		<c:when test="${sesInfo.email == notice.noticeWriter || sesInfo.auth == 'Admin' }"    >																												
+			<input type="button" value="수정" onClick="location.href='updateNotice.do?noticeId=${notice.noticeId}'">
+		</c:when>
+		<c:otherwise>
+			<input disabled type="button" value="수정" onClick="location.href='updateNotice.do?noticeId=${notice.noticeId}'">
+		</c:otherwise>
+	</c:choose>
+	   						<!-- searchListControl 에서 받은 현재페이지 넘버로 페이지이동 -->
+	<input type="button" value="목록" onClick="location.href='noticeList.do?page=${pageNum}'">
 </body>
 
 </html>

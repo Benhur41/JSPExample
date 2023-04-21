@@ -37,7 +37,8 @@
 			</td>
 		</tr>
 	</table>
-	<input type="submit" value="수정"><input type="button" value="삭제" onClick="location.href='deleteNotice.do?noticeId=${notice.noticeId}'">
+	<input type="submit" value="수정">
+	<input type="button" value="삭제" onClick="location.href='deleteNotice.do?noticeId=${notice.noticeId}'">
 	</form>
 </body>
 </html>

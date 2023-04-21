@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="show">
+		<div id="child">
+			<p>Hello</p>
+		</div>
+		<ul>
+			<li>Apple</li>
+			<li>Banana</li>
+		</ul>
+	</div>
+	<script>
+	let name = "김태연";
+	console.log(name);
+	let num = 100;
+	num = "apple";
+	num = 100>20;
+	console.log(typeof num);
+	let obj = {}
+	obj.id = 'user01';
+	obj.name = 'kim';
+	obj.hobbies = ["스쿼트" , "데드리프트","ohp"];
+	
+	console.log(obj);
+	console.log(obj.hobbies[0]);
+	for(let hobby of obj.hobbies ){
+		console.log(hobby);
+	}
+	
+	for(let prop in obj){
+		console.log(prop,obj[prop]);
+	}
+	//Document Object Model
+	//하위요소로 가려면 .children 사용
+	//
+	// console.log(window.document.children[0].children);
+	// window.alert('hi');
+	//상위요소는 parent
+	let child = document.getElementById('child');
+	// console.log(child.parentElement.parentElement);
+	//형제요소는 nextElementSibling
+	// console.log(child.nextElementSibling.children[0]);
+	//첫번째 li 가져옴
+	// let elem = document.querySelector('li');
+	// elem.innerHTML = "사과";
+	// console.log(elem.innerText);
+	let second = document.querySelector('li:nth-of-type(2)');
+	console.log(second.innerHTML);
+	second.addEventListener('click' , function(){alert(second.innerHTML)});
+	</script>
+</body>
+</html>

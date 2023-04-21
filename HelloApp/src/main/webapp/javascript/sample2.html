@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		input[name="userName"]{
+			background-color: yellow;
+		}
+		input[name="userId"]{
+			background-color: yellow;
+		}
+	</style>
+</head>
+
+<body>
+	<input type="text" id="fruit">
+	<button id="addBtn">추가</button>
+
+	<ul id="list">
+		<li>Apple</li>
+		<li>banana</li>
+		<li>pen</li>
+	</ul>
+
+
+	<input type="text" name="userId">
+	<input type="text" name="userName">
+	<button id="Btn">추가</button>
+	<table id="tbl">
+		<tbody id="tlist">
+			<tr>
+				<td>user01</td>
+				<td>kim</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<Script>
+		document.querySelector('#addBtn').addEventListener('click', function () {
+			let val = document.querySelector('#fruit').value;
+			let li = document.createElement('li'); //<li></li> 생성
+			li.innerHTML = val; //<li>val</li>
+			document.getElementById('list').append(li);
+		})
+	
+		document.querySelector('#Btn').addEventListener('click' , function (){
+			let val1 = document.querySelector('input[name="userId"]').value;
+			let val2 = document.querySelector('input[name="userName"]').value;
+			let tr = document.createElement('tr');
+			let td1 = document.createElement('td');
+			let td2 = document.createElement('td');
+			td1.innerText =val1;
+			td2.innerText = val2;//그냥 값은 .innerText 에 대입
+			// tr.innerHTML=td1 + td2;
+			tr.append(td1);//태그문장은 append 를 사용해서 넣어줘야 값이 출력된다.
+			tr.append(td2);
+			document.getElementById('tlist').append(tr);
+		})
+
+		document.querySelectorAll('li').forEach(item => {
+				item.addEventListener('click',function(){
+				item.remove();
+				})
+			}
+		)
+	</Script>
+</body>
+
+</html>

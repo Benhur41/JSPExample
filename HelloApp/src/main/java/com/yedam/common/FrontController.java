@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.member.control.LoginControl;
+import com.yedam.member.control.LoginFormControl;
+import com.yedam.member.control.LogoutControl;
+import com.yedam.member.control.MemberInfoControl;
+import com.yedam.member.control.ModifyMemberControl;
 import com.yedam.notice.control.DeleteNoticeControl;
 import com.yedam.notice.control.InsertNoticeControl;
 import com.yedam.notice.control.MainControl;
@@ -41,7 +46,12 @@ public class FrontController extends HttpServlet{
 		map.put("/updateNotice.do", new UpdateNoticeControl());
 		//글 삭제
 		map.put("/deleteNotice.do", new DeleteNoticeControl());
-		
+		//로그인
+		map.put("/loginForm.do", new LoginFormControl());
+		map.put("/login.do", new LoginControl());
+		map.put("/logout.do", new LogoutControl());
+		map.put("/memberInfo.do", new MemberInfoControl());
+		map.put("/modifyMember.do", new ModifyMemberControl());
 	}
 	
 	@Override
