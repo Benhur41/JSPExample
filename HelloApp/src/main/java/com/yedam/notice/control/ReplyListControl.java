@@ -1,12 +1,16 @@
 package com.yedam.notice.control;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
 import com.yedam.notice.domain.ReplyVO;
 import com.yedam.notice.service.ReplyService;
@@ -21,19 +25,31 @@ public class ReplyListControl implements Control {
 		ReplyService service = new ReplyServiceImpl();
 		int noticeId = Integer.parseInt(req.getParameter("nid"));
 		List<ReplyVO> list = service.getReplies(noticeId);
-		String json = "[";
-		for(int i = 0 ; i < list.size() ; i++) {
-			json+="{\"replyId\":"+list.get(i).getReplyId() + ",";
-			json+="\"noticeId\":"+list.get(i).getNoticeId() +",";
-			json+="\"reply\":"+"\""+list.get(i).getReply()+"\",";
-			json+="\"replyWriter\":"+"\""+list.get(i).getReplyWriter()+"\",";
-			json+="\"replyDate\":"+"\""+list.get(i).getReplyDate()+"\"}";
-			if(i +1 != list.size()) {
-				json+=",";
-			}
+		String json = "";
+		Map<String,Object> map = new HashMap<>();
+		if(list != null) {
+			map.put("retCode", "Success");
+			map.put("data",list);
+		}else {
+			map.put("retCode", "Fail");
 		}
-		json +="]";
-		return json + ".json";
+		
+		Gson gson = new GsonBuilder().create();
+		json = gson.toJson(map);
+		return json+".json";
+//		String json = "[";
+//		for(int i = 0 ; i < list.size() ; i++) {
+//			json+="{\"replyId\":"+list.get(i).getReplyId() + ",";
+//			json+="\"noticeId\":"+list.get(i).getNoticeId() +",";
+//			json+="\"reply\":"+"\""+list.get(i).getReply()+"\",";
+//			json+="\"replyWriter\":"+"\""+list.get(i).getReplyWriter()+"\",";
+//			json+="\"replyDate\":"+"\""+list.get(i).getReplyDate()+"\"}";
+//			if(i +1 != list.size()) {
+//				json+=",";
+//			}
+//		}
+//		json +="]";
+//		return json + ".json";
 
 	}
 

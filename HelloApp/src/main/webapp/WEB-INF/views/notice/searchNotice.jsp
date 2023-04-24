@@ -91,7 +91,7 @@
 			let result = JSON.parse(xhtp.response); // json -> object
 
 			for (let reply of result) {
-				let tr = makeTrFunc(reply);
+				let tr = makeTrFunc(reply.data);
 				tlist.append(tr);
 			}
 		}
