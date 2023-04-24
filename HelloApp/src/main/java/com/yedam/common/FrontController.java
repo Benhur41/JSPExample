@@ -16,10 +16,13 @@ import com.yedam.member.control.LoginFormControl;
 import com.yedam.member.control.LogoutControl;
 import com.yedam.member.control.MemberInfoControl;
 import com.yedam.member.control.ModifyMemberControl;
+import com.yedam.notice.control.AddReplyControl;
 import com.yedam.notice.control.DeleteNoticeControl;
 import com.yedam.notice.control.InsertNoticeControl;
 import com.yedam.notice.control.MainControl;
 import com.yedam.notice.control.NoticeListControl;
+import com.yedam.notice.control.RemoveReplyControl;
+import com.yedam.notice.control.ReplyListControl;
 import com.yedam.notice.control.SearchNoticeControl;
 import com.yedam.notice.control.UpdateNoticeControl;
 
@@ -52,6 +55,10 @@ public class FrontController extends HttpServlet{
 		map.put("/logout.do", new LogoutControl());
 		map.put("/memberInfo.do", new MemberInfoControl());
 		map.put("/modifyMember.do", new ModifyMemberControl());
+		//댓글정보
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/addReply.do", new AddReplyControl());
+		map.put("/removeReply.do",new RemoveReplyControl());
 	}
 	
 	@Override
@@ -70,6 +77,11 @@ public class FrontController extends HttpServlet{
 //		if(viewPage.endsWith(".tiles")) {
 //			
 //		}
+		if(viewPage.endsWith(".json")) {
+			resp.setContentType("text/json;charset=UTF-8");
+			resp.getWriter().print(viewPage.substring(0,viewPage.length() - 5));
+			return;
+		}
 		
 		//페이지 재지정
 		RequestDispatcher rd = req.getRequestDispatcher(viewPage);

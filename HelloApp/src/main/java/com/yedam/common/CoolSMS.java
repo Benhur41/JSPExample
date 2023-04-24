@@ -24,7 +24,7 @@ public class CoolSMS {
 			code += str.charAt(idx);
 		}
 		
-		set.put("to", "01057522287"); //수신번호
+		set.put("to", "01043885513"); //수신번호
 		set.put("from", "01057522287");//발신번호
 		set.put("text","회원가입 인증을 위한 코드 입니다, 입력해주세요 \n" + code);//문자내용
 		set.put("type", "sms");//문자타입
