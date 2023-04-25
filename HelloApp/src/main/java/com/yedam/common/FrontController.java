@@ -20,6 +20,7 @@ import com.yedam.notice.control.AddReplyControl;
 import com.yedam.notice.control.DeleteNoticeControl;
 import com.yedam.notice.control.InsertNoticeControl;
 import com.yedam.notice.control.MainControl;
+import com.yedam.notice.control.ModifyReplyControl;
 import com.yedam.notice.control.NoticeListControl;
 import com.yedam.notice.control.RemoveReplyControl;
 import com.yedam.notice.control.ReplyListControl;
@@ -59,6 +60,11 @@ public class FrontController extends HttpServlet{
 		map.put("/replyList.do", new ReplyListControl());
 		map.put("/addReply.do", new AddReplyControl());
 		map.put("/removeReply.do",new RemoveReplyControl());
+		map.put("/modifyReply.do",new ModifyReplyControl());
+		
+		//차트 생성. 
+		map.put("/chart.do", new ChartFormControl());
+		map.put("/chartData.do", new ChartDataControl());
 	}
 	
 	@Override
@@ -79,7 +85,7 @@ public class FrontController extends HttpServlet{
 //		}
 		if(viewPage.endsWith(".json")) {
 			resp.setContentType("text/json;charset=UTF-8");
-			resp.getWriter().print(viewPage.substring(0,viewPage.length() - 5));
+			resp.getWriter().print(viewPage.substring(0,viewPage.length() - 5));//request 객체를 보낸곳으로 데이터 전달
 			return;
 		}
 		

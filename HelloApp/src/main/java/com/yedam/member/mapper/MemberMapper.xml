@@ -10,4 +10,11 @@
  		update members 
 		set email=#{email} , name =#{name} , phone=#{phone} where email =#{email}
  	</update>
+ 	<select id="memberByDept" resultType="Map">
+ 		select d.department_name,count(*) as cnt
+		from hr.employees e
+		join hr.departments d
+		on e.department_id = d.department_id
+		group by d.department_name
+ 	</select>
 </mapper>
