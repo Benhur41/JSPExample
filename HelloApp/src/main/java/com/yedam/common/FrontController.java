@@ -65,6 +65,15 @@ public class FrontController extends HttpServlet{
 		//차트 생성. 
 		map.put("/chart.do", new ChartFormControl());
 		map.put("/chartData.do", new ChartDataControl());
+		
+		//fullcal
+		map.put("/fullCalendar.do", new FullCalendarControl());
+		//목록
+		map.put("/eventList.do", new EventListControl());
+		//등록 .json
+		map.put("/addEvent.do", new AddEventControl());
+		//삭제 .json
+		map.put("/removeEvent.do", new RemoveEventControl());
 	}
 	
 	@Override

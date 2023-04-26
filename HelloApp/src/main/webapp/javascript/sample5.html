@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+</head>
+
+<body>
+	<p>진료소 현황</p>
+	<select id="sido">
+	</select>
+	<button id="searchbtn">조회</button>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>센터ID</th>
+				<th>관할센터</th>
+				<th>주소</th>
+				<th>건물이름</th>
+				<th>지도</th>
+			</tr>
+		</thead>
+		<tbody id="tlist">
+		</tbody>
+	</table>
+	<script>
+		let showFields = ['id', 'centerName', 'address','facilityName'];
+		let url =
+			`https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&serviceKey=uLViJsTiu5Yy%2F6ko17jZNxysla1fmSFTyfU21EC6r5rwm4DoC%2FzDXyHr2GU%2F1FlB%2BX6LvQyyBO9vaPIhf6L6pw%3D%3D`;
+		let list = document.querySelector('#tlist');
+		let allCenter;
+
+		fetch(url)
+			.then(resolve => resolve.json())
+			.then(result => {
+				allCenter = result.data; // 조회된 결과 저장 밖에서도 쓸수 있게 전역변수에 저장
+				//sido 정보 중복된 값 제거하고 새로운 배열 만들기 select 만들기위해
+				let sidoAry = []; // indexOf(값) => 존재하면 index 값 반환 없으면 -1 반환// (-1 일때만 배열안에 넣게(array.push)만들기)
+				//sidoAry 배열 반복해서 중복되지 않는 option.
+				allCenter.forEach(element => {
+					if(sidoAry.indexOf(element.sido) == -1){
+						sidoAry.push(element.sido);
+					}
+				})
+				
+				for(let i = 0 ; i<sidoAry.length;i++){
+				let opt = document.createElement('option');
+				opt.innerText = sidoAry[i];
+				document.querySelector('#sido').append(opt)
+				}
+				
+				
+				console.log(result);
+				result.data.forEach(element => {
+					console.log(element);
+					let searchkey = document.querySelector('#searchkey').value;
+					if (element.sido == searchkey)
+
+						list.append(makeRow(element));
+				})
+			})
+			.catch(error => console.log(error))
+		console.log(allCenter);
+		//조회이벤트
+		document.querySelector('#searchbtn').addEventListener('click', function () {
+			let searchkey = document.querySelector('#sido').value;
+			findList(searchkey);
+		})
+
+		// row 한건생성
+		function makeRow(center = {}) {
+			let tr = document.createElement('tr');
+			
+			for (let field of showFields) {
+				let td = document.createElement('td');
+				td.innerText = center[field];
+				tr.append(td);
+			}
+			td = document.createElement('td');
+			let btn = document.createElement('button');
+			btn.innerText='지도';
+			btn.addEventListener('click',function (){
+				location.href = "map.jsp?lat="+center.lat+"&lng="+center.lng+"&facility="+center.facilityName;
+			})
+			td.append(btn);
+			tr.append(td);
+			return tr;
+		}
+
+		function findList(sido = "서울특별시") {
+			list.innerHTML = ""; //기존 목록을 제거 
+			allCenter.forEach(center => {
+				if (center.sido == sido) {
+					list.append(makeRow(center));
+				}
+			})
+		}
+		
+		
+	</script>
+	
+</body>
+
+</html>

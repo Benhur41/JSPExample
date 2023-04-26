@@ -30,22 +30,23 @@
 		integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 		crossorigin="anonymous"></script>
 	<script>
-		$.ajax({
+		$(function (){$.ajax({
 			method : "GET",
 			url : "https://dapi.kakao.com/v3/search/book?target=title",
 			data : {
 				target:"title",
-				query:"코스모스" ,
-				size:20,
-				sort:"latest"
+				size:50,
+				query:"혼자",
+				page:2
 			},
 			headers:{Authorization: "KakaoAK a586331ea9ef27d3ebe02e01fd1e2619"},
 		}).done(function(msg) {
-			$("#1").append("<p>"+msg.documents[0].title+"</p>") 
-			$("#2").append("<img src='"+msg.documents[0].thumbnail+"'>")
-			$("#3").append("<p>"+msg.documents[0].contents+"</p>")
-			$("#4").append("<p>"+msg.documents[0].authors+"</p>")
-		});
+			console.log(msg);
+			$("#1").append("<p>"+msg.documents[1].title+"</p>") 
+			$("#2").append("<img src='"+msg.documents[1].thumbnail+"'>")
+			$("#3").append("<p>"+msg.documents[1].contents+"</p>")
+			$("#4").append("<p>"+msg.documents[1].authors+"</p>")
+		})});
 	</script>
 </body>
 </html>

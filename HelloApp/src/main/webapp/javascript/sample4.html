@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>sample4.html</p>
+	<ul>
+	
+	</ul>
+	<script>
+	/* 	let xht = new XMLHttpRequest();
+		xht.open('get','MOCK_DATA.json');
+		xht.send();
+		xht.onload = function () {
+			console.log(JSON.parse(xht.response));
+		} */
+		
+		fetch('MOCK_DATA.json')
+		.then(function(resolve){
+			console.log('Success');
+			return resolve.json();  // 
+		},function(){
+			console.log('Fail');
+		})
+		.then(function (result){
+			console.log('Success',result);
+		},function(error){
+			console.log('Fail',error);
+		})
+		
+		fetch('MOCK_DATA.json')
+		.then((resolve) => resolve.json() )
+		.then((result) => { 
+			console.log(result);
+			for( let i = 0 ; i<result.length ; i++){
+				let li = document.createElement('li');
+				li.innerText = result[i].id + ", "+result[i].first_name + " " +result[i].last_name;
+				document.querySelector('ul').append(li);
+			}
+		})
+		.catch((error) => console.log(error) ) //아무 then 에서 에러 발생시 catch 에서 실행
+		
+		
+	</script>
+</body>
+</html>
