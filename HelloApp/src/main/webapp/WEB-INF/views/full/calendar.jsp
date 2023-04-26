@@ -71,12 +71,12 @@
 	      },
 	      eventClick: function(arg) {
 	        if (confirm('삭제하시겠습니까?')) {
-	        	console.log(arg._def.title);
+	        	console.log(arg.event._def.title);
 	        	//Ajax 삭제
 	        	fetch('removeEvent.do',{
 	        		method:'post',
 	        		headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
-	        		body:'title='+arg._def.title
+	        		body:'title='+arg.event._def.title
 	        	})
 	        	.then(resolve => resolve.json())
 	        	.then(result => {
